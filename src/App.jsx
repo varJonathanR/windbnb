@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import FalseSearch from './components/FalseSearch'
 import Search from './components/Search'
 import Stays from './components/Stays'
 import Footer from './components/Footer'
-import { useState } from 'react'
 
 function App() {
+  /* Fetchin stays data */
+  const [stays, setStays] = useState([]);
+
+  useEffect(() => {
+    fetch("/src/data/stays.json")
+      .then(response => response.json())
+      .then(data => {
+          console.log(data)
+          setStays(data)
+      })
+      .catch(error => console.log("Error:", error));
+  }, []);
+
   /* Filter by location state */
   const [locationFilter, setLocationFilter] = useState("");
   const locations = ['Helsinki, Finland', 'Turku, Finland', 'Oulu, Finland', 'Vaasa, Finland'];
@@ -28,6 +40,7 @@ function App() {
         />
       </header>
       <Stays 
+        stays={stays}
         locationFilter={locationFilter}
         countFilter={countFilter}
       />

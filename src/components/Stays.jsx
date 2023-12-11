@@ -3,21 +3,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Stays({ locationFilter, countFilter }) {
+export default function Stays({ stays, locationFilter, countFilter }) {
     /* Filter by location */
-    const [stays, setStays] = useState([]);
     const locationCity = locationFilter.split(",")[0];
     let filteredStays = stays.filter(data => data.city.toLowerCase().includes(locationCity.toLowerCase()));
-
-    useEffect(() => {
-        fetch("/src/data/stays.json")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setStays(data)
-        })
-        .catch(error => console.log("Error:", error));
-    }, []);
 
     /* Add Gests filter when user adds gests */
     if(countFilter !== "") filteredStays = filteredStays.filter(data => data.maxGuests >= parseInt(countFilter, 10));
