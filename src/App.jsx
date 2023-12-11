@@ -6,11 +6,11 @@ import Stays from './components/Stays'
 import Footer from './components/Footer'
 
 function App() {
-  /* Fetchin stays data */
+  /* Fetching stays data */
   const [stays, setStays] = useState([]);
 
   useEffect(() => {
-    fetch("/src/data/stays.json")
+    fetch("/data/stays.json")
       .then(response => response.json())
       .then(data => {
           console.log(data)

@@ -7,7 +7,7 @@ export default function FalseSearch({ isActive, setIsActive }) {
 
     return (
         <section className="align-row fsearch-container">
-            <img src="/src/assets/logo.png" alt="Windbnb Logo" />
+            <img src="/assets/logo.png" alt="Windbnb Logo" />
             <div className="fsearch" onClick={handleClick}>
                 <input type="text" placeholder='Add Location' />
                 <input type="text" placeholder='Add Gests' />

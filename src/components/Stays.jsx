@@ -1,7 +1,5 @@
 /* Create all stays card */
-
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React from "react";
 
 export default function Stays({ stays, locationFilter, countFilter }) {
     /* Filter by location */
