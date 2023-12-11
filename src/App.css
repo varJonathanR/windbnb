@@ -1,0 +1,209 @@
+header, .fsearch-container, .search-nav, button, img, .superHost, i {
+    transition: .5s ease all;
+}
+
+header {
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    padding: 2rem;
+
+    & .fsearch-container, & .search-nav {
+        position: absolute;
+        width: calc(100% - 40px);
+    }
+
+    & .fsearch-container {
+        & .fsearch {
+            border: 1px solid var(--light-gray);
+            border-radius: 25px;
+            padding: 10px;
+            gap: 5px;
+    
+            & input {
+                width: 100px;
+                padding: 0 5px;
+            }
+    
+            & input:nth-child(2) {
+                border-right: 1px solid var(--light-gray);
+                border-left: 1px solid var(--light-gray);
+                height: 100%;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    & .search-nav {
+        top: -500px;
+
+        & .align-row {
+            align-items: start;
+            gap: 10px;
+    
+            & .search-filter {
+                width: 45%;
+
+                & .location {
+                    & i {
+                        color: var(--black);
+                    }
+                }
+                
+                & .location:hover {
+                    & i {
+                        color: var(--red);
+                    }
+                }
+    
+                & .count-cont {
+                    & p:nth-child(2) {
+                        color: var(--gray);
+                    }
+    
+                    & .count {
+                        gap: 10px;
+
+                        & button {
+                            padding: 5px 10px;
+                            background-color: transparent;
+                            color: var(--light-gray);
+                            border: 2px solid var(--gray);
+                        }
+
+                        & button:hover {
+                            padding: 5px 10px;
+                            background-color: transparent;
+                            color: var(--black);
+                            border: 2px solid var(--black);
+                        }
+                    }
+                }
+    
+                & .location, & .child-count {
+                    margin-top: 8px;
+                }
+            }
+    
+            & button {
+                padding: 10px 2rem;
+                border-radius: 10px;
+                background-color: var(--red);
+                color: var(--white);
+    
+                & i {
+                    font-size: 1.2rem;
+                    color: var(--white);
+                    margin-right: 3px;
+                }
+            }
+        }
+    }
+}
+
+header.active {
+    height: 300px;
+
+    & .fsearch-container {
+        top: -60px;
+    }
+
+    & .search-nav {
+        top: 20px;
+    }
+}
+
+.stays-header {
+    padding: 0 2rem;
+}
+
+.stays {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.2rem;
+    padding: 1rem;
+
+    & .stay {
+        width: 100%;
+
+        & .img-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            overflow: hidden;
+
+            & img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        & .info-container {
+            & .align-row {
+                color: var(--gray);
+                margin: 10px 0;
+
+                & .superHost {
+                    padding: 0 10px;
+                    color: var(--black);
+                    border: 1px solid var(--black);
+                    border-radius: 1000px;
+                }
+            }
+        }
+    }
+
+    & .stay:hover {
+        & .img-container {
+            & img {
+                transform: scale(1.1);
+            }
+        }
+
+        & .info-container {
+            & .align-row {
+                & .superHost {
+                    background-color: var(--red);
+                    color: var(--white);
+                    border: 1px solid var(--red);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    header {
+        & .search-nav * {
+            font-size: 14px;
+        }
+
+        & .search-nav {
+            top: -500px;
+    
+            & .align-row {
+
+                & button {
+                    padding: 9px 2rem;
+                }
+            }
+        }
+    }
+
+    .stays {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    header {
+        padding: 1rem;
+    }
+
+    .stays {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+}
