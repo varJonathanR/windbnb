@@ -1,7 +1,9 @@
 <h1 align="center">Windbnb</h1>
 
 <div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
+  Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>. <br>
+
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/f6896674-81dd-42e9-9564-52e7a8b61a83/deploy-status)](https://app.netlify.com/sites/windbnb-varjonathanr/deploys)
 </div>
 
 <div align="center">
