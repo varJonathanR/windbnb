@@ -40,54 +40,67 @@ header {
 
         & .align-row {
             align-items: start;
-            gap: 10px;
-    
-            & .search-filter {
-                width: 45%;
+            
+            & .seacrh-filter-container {
+                flex-wrap: wrap;
+                width: calc(100% - 150px);
 
-                & .location {
-                    & i {
-                        color: var(--black);
-                    }
-                }
-                
-                & .location:hover {
-                    & i {
-                        color: var(--red);
-                    }
-                }
+                & .search-filter {
+                    width: 100%;
+                    gap: 1rem;
     
-                & .count-cont {
-                    & p:nth-child(2) {
-                        color: var(--gray);
-                    }
-    
-                    & .count {
-                        gap: 10px;
-
-                        & button {
-                            padding: 5px 10px;
-                            background-color: transparent;
-                            color: var(--light-gray);
-                            border: 2px solid var(--gray);
-                        }
-
-                        & button:hover {
-                            padding: 5px 10px;
-                            background-color: transparent;
+                    & .location {
+                        & i {
                             color: var(--black);
-                            border: 2px solid var(--black);
                         }
                     }
-                }
+                    
+                    & .location:hover {
+                        & i {
+                            color: var(--red);
+                        }
+                    }
+        
+                    & .count-cont {
+                        & p:nth-child(2) {
+                            color: var(--gray);
+                        }
+        
+                        & .count {
+                            gap: 10px;
     
-                & .location, & .child-count {
-                    margin-top: 8px;
+                            & button {
+                                padding: 5px 10px;
+                                background-color: transparent;
+                                color: var(--light-gray);
+                                border: 2px solid var(--gray);
+                            }
+    
+                            & button:hover {
+                                padding: 5px 10px;
+                                background-color: transparent;
+                                color: var(--black);
+                                border: 2px solid var(--black);
+                            }
+                        }
+                    }
+        
+                    & .location, & .child-count {
+                        margin-top: 8px;
+                    }
+
+                    & .location-control, & .gests-control {
+                        display: none;
+                    }
+
+                    & .location-control.activeShow, & .gests-control.activeShow {
+                        display: block;
+                    }
                 }
             }
     
             & button {
-                padding: 10px 2rem;
+                padding: 19px 2rem;
                 border-radius: 10px;
                 background-color: var(--red);
                 color: var(--white);
@@ -184,12 +197,31 @@ header.active {
             top: -500px;
     
             & .align-row {
+                flex-direction: column;
+                & .seacrh-filter-container {
+                    width: 100%;
+    
+                    & .search-filter {
+                        gap: 0;
+                        flex-wrap: wrap;
+                    }
+                }
+
+                & .location-control, & .gests-control {
+                    width: fit-content;
+                }
 
                 & button {
                     padding: 9px 2rem;
+                    margin: 5px auto 0 auto;
                 }
             }
         }
+    }
+
+    
+    header.active {
+        height: 400px;
     }
 
     .stays {

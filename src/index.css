@@ -22,7 +22,7 @@ i {
     color: var(--red);
 }
 
-header, label, .align-row, .fsearch, .count {
+header, label, .align-row, .seacrh-filter-container, .search-filter, .fsearch, .count {
     display: flex;
     align-items: center;
 }
@@ -30,6 +30,10 @@ header, label, .align-row, .fsearch, .count {
 .align-row {
     justify-content: space-between;
     width: 100%;
+}
+
+.column {
+    flex-direction: column;
 }
 
 label {

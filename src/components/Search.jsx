@@ -10,6 +10,8 @@ export default function Search({ setLocationFilter, locations, countFilter, setC
     const [notFound, setNotFound] = useState("");
     const [countGestsA, setcountGestsA] = useState(0);
     const [countGestsC, setcountGestsC] = useState(0);
+    const [showLocations, setShowLocations] = useState(true);
+    const [showCounts, setShowCounts] = useState(false);
 
     /* Filter by location */
 
@@ -48,45 +50,64 @@ export default function Search({ setLocationFilter, locations, countFilter, setC
     /* Add or Remove gests */
 
     const handleGests = action => {
-        if(action === "addA") setcountGestsA(countGestsA + 1);
-        else if(action === "addC") setcountGestsC(countGestsC + 1);
+        if(action === "addA" && countFilter <= 10) setcountGestsA(countGestsA + 1);
+        else if(action === "addC" && countFilter <= 10) setcountGestsC(countGestsC + 1);
         else if(action === "removeA" && countGestsA > 0) setcountGestsA(countGestsA - 1);
         else if(action === "removeC" && countGestsC > 0) setcountGestsC(countGestsC - 1);
     };
+
+    /* Show or hide location and gests control panel */
+    const handleShow = show => {
+        if(show === "locations") {
+            setShowLocations(true);
+            setShowCounts(false);
+        } else if(show === "counts") {
+            setShowLocations(false);
+            setShowCounts(true);
+        }
+    }
 
     return (
         <>
             <section className='search-nav' id='search-nav'>
                 <div className="align-row">
-                    <section className="search-filter">
-                        <label htmlFor="location-label">
-                            LOCATION
-                            <input type="text" placeholder='Add Location' value={filter} onChange={handleFilterChange} />
-                        </label>
-                        { notFound && <p>{notFound}</p> }
-                        { locations
-                            .filter(location => location.toLowerCase().includes(filter.toLowerCase()))
-                            .map((location, i) => (
-                                <p className='location' key={i} onClick={() => selectLocation(location)}>
-                                    <i className="bi bi-geo-alt-fill"></i> {location}
-                                </p>
-                            )) }
-                    </section>
-                    <section className="search-filter">
-                        <label htmlFor="gest">
-                            Gests
-                            <input name='gest' id='gest' type="number" placeholder='Add Gests' value={countFilter} onChange={handleGestsChange} />
-                        </label>
-                        <Gests 
-                            countGests={countGestsA} handleGests={handleGests} 
-                            remove={"removeA"} add={"addA"}
-                            gestType={"Adult"} age={"Ages 13 or above"}
-                        />
-                        <Gests 
-                            countGests={countGestsC} handleGests={handleGests} 
-                            remove={"removeC"} add={"addC"}
-                            gestType={"Children"} age={"Ages 2 - 12"}
-                        />
+                    <section className='seacrh-filter-container column'>
+                        <section className="search-filter">
+                            <label htmlFor="location-label">
+                                LOCATION
+                                <input type="text" placeholder='Add Location' 
+                                    value={filter} onChange={handleFilterChange} onClick={() => handleShow("locations")} />
+                            </label>
+                            <label htmlFor="gest">
+                                Gests
+                                <input type="number" placeholder='Add Gests' 
+                                    value={countFilter} onChange={handleGestsChange}  onClick={() => handleShow("counts")} />
+                            </label>
+                        </section>
+                        <section className="search-filter">
+                            <div className={`align-row column gests-control ${showLocations ? "activeShow" : ""}`}>
+                                { notFound && <p>{notFound}</p> }
+                                { locations
+                                    .filter(location => location.toLowerCase().includes(filter.toLowerCase()))
+                                    .map((location, i) => (
+                                        <p className='location' key={i} onClick={() => selectLocation(location)}>
+                                            <i className="bi bi-geo-alt-fill"></i> {location}
+                                        </p>
+                                    )) }
+                            </div>
+                            <div className={`align-row column gests-control ${showCounts ? "activeShow" : ""}`}>
+                                <Gests 
+                                    countGests={countGestsA} handleGests={handleGests} 
+                                    remove={"removeA"} add={"addA"}
+                                    gestType={"Adult"} age={"Ages 13 or above"}
+                                />
+                                <Gests 
+                                    countGests={countGestsC} handleGests={handleGests} 
+                                    remove={"removeC"} add={"addC"}
+                                    gestType={"Children"} age={"Ages 2 - 12"}
+                                />
+                            </div>
+                        </section>
                     </section>
                     <button className="searchBtn" onClick={handleClick}>
                         <i className="bi bi-search"></i> Seacrh
